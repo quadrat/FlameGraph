@@ -380,6 +380,20 @@ sub color {
 		}
 		# fall-through to color palettes
 	}
+	if (defined $type and $type eq "ovs") {
+		if ($name =~ /::/) {		# C++
+			$type = "yellow";
+		} elsif ($name =~ /ovs/) {	# OVS
+			$type = "aqua"
+		} elsif ($name =~ m/^ $/) {	# Missing symbol
+			$type = "green"
+		} elsif ($name =~ m:_\[k\]:) {	# kernel
+			$type = "orange"
+		} else {			# system
+			$type = "red";
+		}
+		# fall-through to color palettes
+	}
 	if (defined $type and $type eq "wakeup") {
 		$type = "aqua";
 		# fall-through to color palettes
